@@ -1,31 +1,602 @@
-<!DOCTYPE html>
-<html lang="en" >
+<!doctype html>
+<html lang="id" class="scroll-smooth bg-slate-950">
 <head>
-  <meta charset="UTF-8">
-  <title>SolaceBot</title>
-  <meta content="width=device-width, initial-scale=0.8, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css'>
-  <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-<style type="text/css">
-  i {
-    cursor: pointer;
-  }
-</style>
-<div class="profile">
-  <div class="photo"><img src="https://i.imgur.com/OR1FBGa.jpeg"/></div>
-  <div class="content">
-    <div class="text">
-      <h3>Solace</h3>
-      <h6>Social Media Bot</h6>
-    </div>
-    <div class="btn"><span></span></div>
-  </div>
-  <div class="box"><i class="fa fa-whatsapp" onclick="location.href = 'https://wa.me/6281770410787?text=!menu'"></i></div>
-</div>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-<script src="./script.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Solace Bot adalah asisten WhatsApp dengan fitur AI, downloader media, konverter, dan utilitas praktis.">
+  <meta name="theme-color" content="#020617">
+  <title>Solace Bot — Asisten WhatsApp Serbaguna</title>
 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" referrerpolicy="no-referrer">
+</head>
+<body class="overflow-x-hidden bg-slate-950 font-sans text-slate-100 antialiased selection:bg-cyan-300 selection:text-slate-950">
+  <div class="pointer-events-none fixed inset-0 -z-20 overflow-hidden" aria-hidden="true">
+    <div data-ambient class="absolute -left-40 top-[-9rem] h-96 w-96 rounded-full bg-blue-700/20 blur-3xl animate-pulse"></div>
+    <div data-ambient class="absolute -right-44 top-1/3 h-[30rem] w-[30rem] rounded-full bg-cyan-500/10 blur-3xl animate-pulse"></div>
+    <div data-ambient class="absolute bottom-[-12rem] left-1/3 h-96 w-96 rounded-full bg-indigo-700/20 blur-3xl animate-pulse"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:44px_44px] [mask-image:linear-gradient(to_bottom,black,transparent_78%)]"></div>
+  </div>
+
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-slate-950/75 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8" aria-label="Navigasi utama">
+      <a href="#beranda" class="group flex items-center gap-3" aria-label="Solace Bot">
+        <span class="grid h-10 w-10 place-items-center rounded-xl border border-cyan-300/30 bg-cyan-300/10 text-cyan-200 shadow-lg shadow-cyan-500/10 transition duration-300 group-hover:-rotate-6 group-hover:scale-110">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </span>
+        <span class="text-lg font-black tracking-tight text-white">solace<span class="text-cyan-300">bot</span></span>
+      </a>
+
+      <div class="hidden items-center gap-7 text-sm font-medium text-slate-300 xl:flex">
+        <a href="#fitur" class="transition hover:text-cyan-200">Fitur</a>
+        <a href="#auto" class="transition hover:text-cyan-200">Tautan Otomatis</a>
+        <a href="#cara-pakai" class="transition hover:text-cyan-200">Cara Pakai</a>
+        <a href="https://liberiostore.com/" target="_blank" rel="noopener noreferrer" class="transition hover:text-cyan-200">Topup</a>
+      </div>
+
+      <a href="https://wa.me/6281770410787?text=!menu" target="_blank" rel="noopener noreferrer" class="hidden items-center gap-2 rounded-xl bg-cyan-300 px-4 py-2.5 text-sm font-bold text-slate-950 shadow-lg shadow-cyan-500/20 transition duration-300 hover:-translate-y-0.5 hover:bg-cyan-200 md:flex">
+        <i class="fa-brands fa-whatsapp text-base"></i>
+        Buka Bot
+      </a>
+
+      <button id="menuToggle" type="button" class="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/5 text-slate-200 transition hover:border-cyan-300/40 hover:text-cyan-200 xl:hidden" aria-controls="mobileMenu" aria-expanded="false" aria-label="Buka menu">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+    </nav>
+
+    <div id="mobileMenu" class="hidden border-t border-white/10 px-5 pb-5 pt-3 xl:hidden">
+      <div class="mx-auto flex max-w-7xl flex-col gap-2 text-sm font-medium text-slate-200">
+        <a href="#fitur" class="rounded-lg px-3 py-2.5 transition hover:bg-white/5 hover:text-cyan-200">Fitur</a>
+        <a href="#auto" class="rounded-lg px-3 py-2.5 transition hover:bg-white/5 hover:text-cyan-200">Tautan Otomatis</a>
+        <a href="#cara-pakai" class="rounded-lg px-3 py-2.5 transition hover:bg-white/5 hover:text-cyan-200">Cara Pakai</a>
+        <a href="https://liberiostore.com/" target="_blank" rel="noopener noreferrer" class="rounded-lg px-3 py-2.5 transition hover:bg-white/5 hover:text-cyan-200">Topup LiberioStore</a>
+        <a href="https://wa.me/6281770410787?text=!menu" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-300 px-4 py-3 font-bold text-slate-950">
+          <i class="fa-brands fa-whatsapp"></i> Buka Solace Bot
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="beranda">
+    <section class="mx-auto grid max-w-7xl gap-12 px-5 pb-20 pt-14 md:pt-16 lg:px-8 lg:pb-28 xl:grid-cols-[1.05fr_0.95fr] xl:items-center xl:gap-14 xl:pt-24">
+      <div class="reveal translate-y-5 opacity-0 transition-all duration-700">
+        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-cyan-100">
+          <span class="relative flex h-2.5 w-2.5"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-300 opacity-75"></span><span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-cyan-200"></span></span>
+          Asisten WhatsApp serbaguna
+        </div>
+        <h1 class="max-w-3xl text-4xl font-black leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+          Satu bot untuk <span class="bg-gradient-to-r from-cyan-200 to-blue-400 bg-clip-text text-transparent">AI, media, dan utilitas</span> harian.
+        </h1>
+        <p class="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+          Solace Bot membantu Anda menjalankan berbagai kebutuhan langsung dari WhatsApp: mengobrol dengan AI, membuat gambar, mengunduh media, mengonversi file, hingga mencari informasi praktis.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="https://wa.me/6281770410787?text=!menu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 rounded-xl bg-cyan-300 px-5 py-3.5 font-bold text-slate-950 shadow-xl shadow-cyan-500/20 transition duration-300 hover:-translate-y-1 hover:bg-cyan-200">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            Buka Solace Bot
+            <i class="fa-solid fa-arrow-right text-sm"></i>
+          </a>
+          <a href="#fitur" class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3.5 font-semibold text-white transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40 hover:bg-cyan-300/10">
+            <i class="fa-solid fa-grid-2"></i>
+            Jelajahi fitur
+          </a>
+        </div>
+        <div class="mt-10 grid max-w-xl grid-cols-3 gap-3 border-t border-white/10 pt-6">
+          <div><p id="commandCount" class="text-2xl font-black text-white">36</p><p class="mt-1 text-xs leading-5 text-slate-400">perintah utama</p></div>
+          <div><p id="categoryCount" class="text-2xl font-black text-white">4</p><p class="mt-1 text-xs leading-5 text-slate-400">kategori fitur</p></div>
+          <div><p class="text-2xl font-black text-white">1</p><p class="mt-1 text-xs leading-5 text-slate-400">akses WhatsApp</p></div>
+        </div>
+      </div>
+
+      <div data-hero-preview class="reveal relative translate-y-5 opacity-0 transition-all delay-150 duration-700">
+        <div class="absolute -inset-6 rounded-[2rem] bg-gradient-to-tr from-cyan-500/15 via-blue-500/5 to-indigo-500/15 blur-2xl"></div>
+        <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/75 shadow-2xl shadow-slate-950/60 backdrop-blur-xl">
+          <div class="flex items-center justify-between border-b border-white/10 bg-slate-950/50 px-5 py-4">
+            <div class="flex items-center gap-2">
+              <span class="h-2.5 w-2.5 rounded-full bg-rose-400"></span><span class="h-2.5 w-2.5 rounded-full bg-amber-300"></span><span class="h-2.5 w-2.5 rounded-full bg-emerald-300"></span>
+            </div>
+            <div class="flex items-center gap-2 text-xs font-bold tracking-wider text-cyan-200"><i class="fa-solid fa-sparkles animate-pulse"></i> SOLACE BOT</div>
+            <span class="text-xs text-slate-500">WhatsApp</span>
+          </div>
+          <div class="space-y-5 p-5 sm:p-7">
+            <div class="ml-auto max-w-[88%] rounded-2xl rounded-tr-sm bg-cyan-300 px-4 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/10">/gambar kota futuristik di malam hari</div>
+            <div class="max-w-[92%] rounded-2xl rounded-tl-sm border border-white/10 bg-white/5 p-4 text-sm leading-6 text-slate-200">
+              <div class="mb-3 flex items-center gap-2 text-xs font-bold text-cyan-200"><span class="grid h-6 w-6 place-items-center rounded-lg bg-cyan-300/10"><i class="fa-solid fa-wand-magic-sparkles"></i></span> Solace Bot</div>
+              Siap membuat gambar berdasarkan prompt Anda. Proses permintaan sedang disiapkan.
+              <div class="mt-4 flex gap-1.5"><span class="h-1.5 w-1.5 animate-bounce rounded-full bg-cyan-200 [animation-delay:-0.3s]"></span><span class="h-1.5 w-1.5 animate-bounce rounded-full bg-cyan-200 [animation-delay:-0.15s]"></span><span class="h-1.5 w-1.5 animate-bounce rounded-full bg-cyan-200"></span></div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="rounded-lg border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1.5 text-xs font-medium text-cyan-100"><i class="fa-solid fa-robot mr-1.5"></i>AI</span>
+              <span class="rounded-lg border border-blue-300/20 bg-blue-300/10 px-2.5 py-1.5 text-xs font-medium text-blue-100"><i class="fa-solid fa-download mr-1.5"></i>Downloader</span>
+              <span class="rounded-lg border border-violet-300/20 bg-violet-300/10 px-2.5 py-1.5 text-xs font-medium text-violet-100"><i class="fa-solid fa-arrow-right-arrow-left mr-1.5"></i>Konverter</span>
+            </div>
+          </div>
+          <div class="border-t border-white/10 px-5 py-3.5 text-xs text-slate-400"><i class="fa-solid fa-lock mr-1.5 text-emerald-300"></i> Gunakan fitur secara bertanggung jawab dan hormati hak cipta konten.</div>
+        </div>
+        <div class="absolute -right-3 top-14 hidden animate-bounce rounded-2xl border border-cyan-300/20 bg-slate-900/90 px-3 py-2 text-xs font-semibold text-cyan-100 shadow-xl backdrop-blur xl:block"><i class="fa-solid fa-bolt mr-1.5 text-amber-300"></i> Cepat dari chat</div>
+        <div class="absolute -bottom-5 -left-4 hidden rounded-2xl border border-white/10 bg-slate-900/90 px-3 py-2 text-xs font-semibold text-slate-200 shadow-xl backdrop-blur xl:block"><i class="fa-solid fa-link mr-1.5 text-cyan-200"></i> Tautan terdeteksi otomatis</div>
+      </div>
+    </section>
+
+    <section class="border-y border-white/10 bg-slate-900/40">
+      <div class="mx-auto grid max-w-7xl gap-4 px-5 py-7 sm:grid-cols-2 lg:px-8 xl:grid-cols-3 xl:gap-5">
+        <div class="flex items-center gap-4"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-cyan-300/10 text-cyan-200"><i class="fa-solid fa-message"></i></span><div><p class="font-bold text-white">Berbasis perintah</p><p class="mt-0.5 text-sm text-slate-400">Akses fitur melalui chat WhatsApp.</p></div></div>
+        <div class="flex items-center gap-4"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-blue-300/10 text-blue-200"><i class="fa-solid fa-link"></i></span><div><p class="font-bold text-white">Tautan otomatis</p><p class="mt-0.5 text-sm text-slate-400">Platform tertentu bisa dikenali dari URL.</p></div></div>
+        <div class="flex items-center gap-4"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-violet-300/10 text-violet-200"><i class="fa-solid fa-mobile-screen-button"></i></span><div><p class="font-bold text-white">Ramah mobile</p><p class="mt-0.5 text-sm text-slate-400">Dirancang untuk penggunaan dari ponsel.</p></div></div>
+      </div>
+    </section>
+
+    <section id="fitur" class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+      <div class="reveal max-w-3xl translate-y-5 opacity-0 transition-all duration-700">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">Daftar fitur</p>
+        <h2 class="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">Pilih perintah sesuai kebutuhan.</h2>
+        <p class="mt-4 text-base leading-7 text-slate-400">Setiap kartu menjelaskan fungsi, alias yang diterima, dan cara penggunaan dasar berdasarkan konfigurasi Solace Bot.</p>
+      </div>
+
+      <div class="reveal mt-9 flex flex-col gap-4 translate-y-5 opacity-0 transition-all delay-100 duration-700 xl:flex-row xl:items-center xl:justify-between">
+        <div class="relative w-full xl:max-w-md">
+          <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+          <input id="featureSearch" type="search" autocomplete="off" placeholder="Cari perintah atau fungsi..." class="w-full rounded-xl border border-white/10 bg-slate-900/70 py-3 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/50 focus:ring-4 focus:ring-cyan-300/10">
+        </div>
+        <div id="filterButtons" class="flex flex-wrap gap-2" aria-label="Filter kategori"></div>
+      </div>
+
+      <div class="mt-5 flex items-center justify-between text-sm text-slate-400">
+        <p id="resultText" aria-live="polite">Menampilkan 36 fitur.</p>
+        <button id="resetFilter" type="button" class="hidden font-semibold text-cyan-200 transition hover:text-cyan-100">Reset filter</button>
+      </div>
+
+      <div id="featureGrid" class="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-3"></div>
+      <div id="emptyState" class="hidden mt-7 rounded-2xl border border-dashed border-white/15 bg-white/[0.03] px-6 py-14 text-center">
+        <span class="mx-auto grid h-12 w-12 place-items-center rounded-xl bg-white/5 text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <p class="mt-4 font-bold text-white">Fitur tidak ditemukan</p>
+        <p class="mt-1 text-sm text-slate-400">Coba gunakan kata kunci lain atau hapus filter kategori.</p>
+      </div>
+    </section>
+
+    <section id="auto" class="border-y border-white/10 bg-slate-900/40">
+      <div class="mx-auto grid max-w-7xl gap-8 px-5 py-20 lg:px-8 lg:py-24 xl:grid-cols-[0.82fr_1.18fr] xl:items-center xl:gap-10">
+        <div class="reveal translate-y-5 opacity-0 transition-all duration-700">
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">Tautan otomatis</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">Kirim tautannya, bot mengenali platformnya.</h2>
+          <p class="mt-4 leading-7 text-slate-400">Untuk platform yang didukung, Solace Bot dapat mengarahkan tautan yang dikirim ke fitur terkait tanpa harus mengetik nama perintah terlebih dahulu.</p>
+          <div class="mt-7 rounded-2xl border border-cyan-300/15 bg-cyan-300/[0.06] p-5 text-sm leading-7 text-cyan-50">
+            <i class="fa-solid fa-circle-info mr-2 text-cyan-200"></i>
+            Deteksi mengikuti domain dan pola URL yang terdaftar pada bot. Hasil dapat bergantung pada validitas tautan dan ketersediaan layanan asal.
+          </div>
+        </div>
+        <div id="autoPlatformGrid" class="reveal grid translate-y-5 gap-3 opacity-0 transition-all delay-100 duration-700 sm:grid-cols-2"></div>
+      </div>
+    </section>
+
+    <section id="cara-pakai" class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+      <div class="reveal max-w-3xl translate-y-5 opacity-0 transition-all duration-700">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">Cara pakai</p>
+        <h2 class="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">Mulai dalam tiga langkah.</h2>
+      </div>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        <article class="reveal group translate-y-5 rounded-2xl border border-white/10 bg-slate-900/60 p-6 opacity-0 transition-all duration-700 hover:-translate-y-1 hover:border-cyan-300/25 hover:bg-slate-900">
+          <span class="grid h-12 w-12 place-items-center rounded-xl bg-cyan-300/10 text-lg font-black text-cyan-200 transition duration-300 group-hover:scale-110">01</span>
+          <h3 class="mt-5 text-lg font-bold text-white">Buka percakapan</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-400">Tekan tombol WhatsApp untuk membuka nomor Solace Bot: <span class="font-medium text-slate-200">+62 817-7041-0787</span>.</p>
+        </article>
+        <article class="reveal group translate-y-5 rounded-2xl border border-white/10 bg-slate-900/60 p-6 opacity-0 transition-all delay-100 duration-700 hover:-translate-y-1 hover:border-cyan-300/25 hover:bg-slate-900">
+          <span class="grid h-12 w-12 place-items-center rounded-xl bg-blue-300/10 text-lg font-black text-blue-200 transition duration-300 group-hover:scale-110">02</span>
+          <h3 class="mt-5 text-lg font-bold text-white">Lihat daftar perintah</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-400">Gunakan <code class="rounded bg-white/5 px-1.5 py-0.5 text-cyan-200">/menu</code> untuk menampilkan daftar fitur, lalu pilih perintah yang dibutuhkan.</p>
+        </article>
+        <article class="reveal group translate-y-5 rounded-2xl border border-white/10 bg-slate-900/60 p-6 opacity-0 transition-all delay-200 duration-700 hover:-translate-y-1 hover:border-cyan-300/25 hover:bg-slate-900">
+          <span class="grid h-12 w-12 place-items-center rounded-xl bg-violet-300/10 text-lg font-black text-violet-200 transition duration-300 group-hover:scale-110">03</span>
+          <h3 class="mt-5 text-lg font-bold text-white">Kirim perintah atau media</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-400">Masukkan teks, URL, atau reply media sesuai penjelasan pada kartu fitur. Beberapa platform mendukung deteksi tautan otomatis.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-5 pb-20 lg:px-8 lg:pb-28">
+      <div class="reveal relative overflow-hidden rounded-3xl border border-cyan-300/15 bg-gradient-to-br from-cyan-300/15 via-blue-500/10 to-indigo-500/15 px-6 py-10 translate-y-5 opacity-0 transition-all duration-700 sm:px-10 sm:py-14">
+        <div class="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-cyan-300/15 blur-3xl animate-pulse"></div>
+        <div class="relative flex flex-col gap-7 xl:flex-row xl:items-center xl:justify-between">
+          <div class="max-w-2xl">
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-cyan-200">Siap digunakan</p>
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">Akses Solace Bot dari WhatsApp.</h2>
+            <p class="mt-4 leading-7 text-slate-200/80">Kirim pesan menu untuk melihat perintah lengkap langsung dari percakapan Anda.</p>
+          </div>
+          <a href="https://wa.me/6281770410787?text=!menu" target="_blank" rel="noopener noreferrer" class="inline-flex shrink-0 items-center justify-center gap-3 rounded-xl bg-cyan-300 px-5 py-3.5 font-bold text-slate-950 shadow-xl shadow-cyan-950/30 transition duration-300 hover:-translate-y-1 hover:bg-cyan-200">
+            <i class="fa-brands fa-whatsapp text-xl"></i> Mulai di WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 bg-slate-950">
+    <div class="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-8 text-sm text-slate-400 lg:px-8 xl:flex-row xl:items-center xl:justify-between">
+      <div><p class="font-bold text-slate-200">Solace Bot</p><p class="mt-1">Asisten WhatsApp untuk kebutuhan AI, media, dan utilitas.</p></div>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <a href="https://solace.web.id/" target="_blank" rel="noopener noreferrer" class="transition hover:text-cyan-200">solace.web.id <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+        <a href="https://liberiostore.com/" target="_blank" rel="noopener noreferrer" class="transition hover:text-cyan-200">LiberioStore <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></a>
+        <a href="https://wa.me/6281770410787?text=!menu" target="_blank" rel="noopener noreferrer" class="transition hover:text-cyan-200">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="featureModal" class="fixed inset-0 z-50 hidden items-end justify-center overflow-y-auto bg-slate-950/75 p-4 backdrop-blur-sm sm:items-center" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div id="modalPanel" class="w-full max-w-xl max-h-[calc(100dvh-2rem)] overflow-y-auto translate-y-5 rounded-3xl border border-white/10 bg-slate-900 p-6 opacity-0 shadow-2xl shadow-black/50 transition duration-300 sm:max-h-[calc(100dvh-3rem)] sm:p-7">
+      <div class="flex items-start justify-between gap-4">
+        <div class="flex min-w-0 items-center gap-3"><span id="modalIcon" class="grid h-11 w-11 shrink-0 place-items-center rounded-xl"></span><div><p id="modalCategory" class="text-xs font-bold uppercase tracking-[0.16em]"></p><h2 id="modalTitle" class="mt-1 text-xl font-black text-white"></h2></div></div>
+        <button id="closeModal" type="button" class="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-white/10 text-slate-300 transition hover:border-cyan-300/35 hover:text-cyan-200" aria-label="Tutup detail fitur"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p id="modalDescription" class="mt-6 leading-7 text-slate-300"></p>
+      <div id="modalUsageBox" class="mt-5 hidden rounded-2xl border border-cyan-300/15 bg-cyan-300/[0.06] p-4"><p class="text-xs font-bold uppercase tracking-[0.16em] text-cyan-200">Cara penggunaan</p><p id="modalUsage" class="mt-2 text-sm leading-6 text-cyan-50"></p></div>
+      <div id="modalAliasWrap" class="mt-5 hidden"><p class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Alias yang didukung</p><div id="modalAliases" class="mt-2 flex flex-wrap gap-2"></div></div>
+      <div class="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end"><button id="closeModalSecondary" type="button" class="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:bg-white/5">Tutup</button><a href="https://wa.me/6281770410787?text=!menu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-300 px-4 py-3 text-sm font-bold text-slate-950 transition hover:bg-cyan-200"><i class="fa-brands fa-whatsapp"></i> Buka Bot</a></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+const featureData = [
+  { command: 'ai', aliases: ['tanya'], category: 'ai', icon: 'fa-robot', title: 'AI Chat', description: 'Ajukan pertanyaan atau mengobrol dengan AI langsung melalui WhatsApp.', detail: 'Gunakan fitur ini untuk meminta penjelasan, ide, bantuan menulis, atau percakapan umum. Perintah dapat dipakai dengan teks pertanyaan setelah nama perintah.', usage: 'Contoh: /ai jelaskan perbedaan RAM dan storage' },
+  { command: 'gambar', aliases: [], category: 'ai', icon: 'fa-image', title: 'Buat Gambar AI', description: 'Membuat gambar berdasarkan prompt teks yang Anda kirim.', detail: 'Tuliskan gambaran visual yang diinginkan, misalnya objek, suasana, gaya, atau warna. Bot akan meneruskan prompt tersebut untuk pembuatan gambar AI.', usage: 'Contoh: /gambar ilustrasi pantai tropis saat senja' },
+  { command: 'edit', aliases: ['editgambar'], category: 'ai', icon: 'fa-wand-magic-sparkles', title: 'Edit Gambar AI', description: 'Mengedit gambar menggunakan prompt AI melalui pesan reply.', detail: 'Reply gambar yang ingin diedit lalu sertakan perintah beserta instruksi perubahan. Jelaskan hasil yang diinginkan agar permintaan lebih jelas.', usage: 'Reply gambar, lalu kirim: /edit ubah latar menjadi studio minimalis' },
+  { command: 'faceswap', aliases: ['tukarmuka'], category: 'ai', icon: 'fa-user-group', title: 'Tukar Wajah', description: 'Menukar wajah pada gambar target dengan gambar wajah lain.', detail: 'Kirim gambar wajah sebagai balasan pada gambar target, lalu gunakan perintah faceswap. Pastikan gambar cukup jelas agar proses pengenalan wajah memiliki konteks yang memadai.', usage: 'Reply gambar target dengan gambar wajah, lalu beri caption: /faceswap' },
+
+  { command: 'bilibili', aliases: ['bstation'], category: 'downloader', icon: 'fa-circle-play', title: 'Bilibili Downloader', description: 'Mengunduh video dari tautan Bilibili atau melalui pencarian.', detail: 'Kirim link Bilibili untuk memproses video terkait. Fitur ini juga tercatat mendukung pencarian video Bilibili dari kata kunci.', usage: 'Kirim perintah /bilibili lalu tautan atau kata kunci pencarian.' },
+  { command: 'ig', aliases: ['instagram'], category: 'downloader', icon: 'fa-brands fa-instagram', title: 'Instagram Downloader', description: 'Mengunduh gambar atau video dari tautan Instagram.', detail: 'Kirim tautan konten Instagram yang ingin diproses. Bot akan mengarahkannya ke fitur Instagram Downloader.', usage: 'Kirim tautan Instagram atau gunakan /ig diikuti tautan.' },
+  { command: 'fb', aliases: ['facebook'], category: 'downloader', icon: 'fa-brands fa-facebook-f', title: 'Facebook Downloader', description: 'Mengunduh gambar atau video dari tautan Facebook.', detail: 'Gunakan fitur ini pada tautan konten Facebook yang tersedia untuk umum. Bot juga mengenali beberapa domain Facebook terkait.', usage: 'Kirim tautan Facebook atau gunakan /fb diikuti tautan.' },
+  { command: 'threads', aliases: ['thread'], category: 'downloader', icon: 'fa-brands fa-threads', title: 'Threads Downloader', description: 'Mengunduh gambar atau video dari tautan Threads.', detail: 'Kirim URL postingan Threads untuk diarahkan ke fitur pengunduhan konten Threads.', usage: 'Kirim tautan Threads atau gunakan /threads diikuti tautan.' },
+  { command: 'tiktok', aliases: ['tt'], category: 'downloader', icon: 'fa-brands fa-tiktok', title: 'TikTok Downloader', description: 'Mengunduh gambar atau video dari tautan TikTok.', detail: 'Kirim tautan TikTok untuk diproses. Konfigurasi bot juga membedakan pola video dan tautan profil TikTok.', usage: 'Kirim tautan TikTok atau gunakan /tiktok diikuti tautan.' },
+  { command: 'twitter', aliases: ['x'], category: 'downloader', icon: 'fa-brands fa-x-twitter', title: 'X / Twitter Downloader', description: 'Mengunduh gambar atau video dari Twitter atau X.', detail: 'Fitur ini mendukung tautan dari domain twitter.com dan x.com yang terdeteksi oleh bot.', usage: 'Kirim tautan X/Twitter atau gunakan /twitter diikuti tautan.' },
+  { command: 'snack', aliases: ['snackvideo'], category: 'downloader', icon: 'fa-solid fa-clapperboard', title: 'SnackVideo Downloader', description: 'Mengunduh video dari SnackVideo.', detail: 'Kirim tautan SnackVideo yang ingin diproses. Bot mengenali domain snackvideo.com dan sck.io.', usage: 'Kirim tautan SnackVideo atau gunakan /snack diikuti tautan.' },
+  { command: 'terabox', aliases: ['tbx', 'tbdown'], category: 'downloader', icon: 'fa-solid fa-box-archive', title: 'Terabox Downloader', description: 'Mengunduh file dari tautan Terabox.', detail: 'Masukkan URL Terabox yang valid. Perintah ini memerlukan tautan sebagai input dan mendukung beberapa domain Terabox yang terdaftar pada bot.', usage: 'Contoh: /terabox https://www.terabox.com/...' },
+  { command: 'ytmp3', aliases: ['play'], category: 'downloader', icon: 'fa-solid fa-music', title: 'YouTube ke MP3', description: 'Mengunduh audio dari video YouTube.', detail: 'Kirim tautan video YouTube untuk mengarahkannya ke pengunduhan audio. Sebagian URL YouTube juga dapat dideteksi otomatis.', usage: 'Gunakan /ytmp3 diikuti tautan video YouTube.' },
+  { command: 'ytmp4', aliases: [], category: 'downloader', icon: 'fa-solid fa-film', title: 'YouTube ke MP4', description: 'Mengunduh video dari YouTube.', detail: 'Gunakan fitur ini ketika Anda membutuhkan video dalam format MP4. Tautan YouTube Shorts pada pola URL tertentu diarahkan ke perintah video.', usage: 'Gunakan /ytmp4 diikuti tautan video YouTube.' },
+
+  { command: 'stiker', aliases: ['sticker'], category: 'converter', icon: 'fa-regular fa-face-smile', title: 'Media ke Stiker', description: 'Mengubah gambar, GIF, atau video menjadi stiker.', detail: 'Kirim atau reply media yang ingin dijadikan stiker lalu gunakan perintah ini. Media yang digunakan harus sesuai dengan jenis yang didukung.', usage: 'Reply/kirim media lalu gunakan: /stiker' },
+  { command: 'stickerv2', aliases: ['stikerv2'], category: 'converter', icon: 'fa-solid fa-wand-sparkles', title: 'Teks ke Stiker Bergerak', description: 'Mengubah teks menjadi stiker bergerak.', detail: 'Masukkan teks yang ingin dibuat menjadi stiker animasi. Perintah ini terpisah dari konversi gambar atau video ke stiker.', usage: 'Gunakan /stickerv2 diikuti teks yang diinginkan.' },
+  { command: 'toimg', aliases: [], category: 'converter', icon: 'fa-solid fa-file-image', title: 'Stiker ke Gambar', description: 'Mengubah stiker menjadi file gambar.', detail: 'Gunakan pada stiker yang ingin disimpan atau diproses kembali sebagai gambar.', usage: 'Reply stiker lalu gunakan: /toimg' },
+  { command: 'tolink', aliases: [], category: 'converter', icon: 'fa-solid fa-link', title: 'Media ke Link', description: 'Mengubah gambar, video, stiker, atau dokumen menjadi tautan.', detail: 'Kirim atau reply file yang ingin dibuatkan tautannya. Fitur ini mendukung tipe media dan dokumen yang tercantum pada menu bot.', usage: 'Reply/kirim file lalu gunakan: /tolink' },
+  { command: 'topdf', aliases: [], category: 'converter', icon: 'fa-solid fa-file-pdf', title: 'Dokumen ke PDF', description: 'Mengubah dokumen DOCX atau PPT menjadi PDF.', detail: 'Kirim dokumen Word atau PowerPoint yang ingin dikonversi. Pastikan file dapat dibaca sebelum memulai proses konversi.', usage: 'Kirim/reply file DOCX atau PPT lalu gunakan: /topdf' },
+  { command: 'toqr', aliases: [], category: 'converter', icon: 'fa-solid fa-qrcode', title: 'Teks ke QR Code', description: 'Mengubah teks menjadi QR Code.', detail: 'Masukkan teks, tautan, atau informasi singkat yang ingin dibuat menjadi QR Code.', usage: 'Contoh: /toqr https://solace.web.id/' },
+  { command: 'tts', aliases: ['tovoice'], category: 'converter', icon: 'fa-solid fa-volume-high', title: 'Text to Speech', description: 'Mengubah teks menjadi suara.', detail: 'Tulis kalimat yang ingin dikonversi ke audio. Gunakan teks yang jelas agar pelafalan hasil suara lebih mudah dipahami.', usage: 'Contoh: /tts Selamat datang di Solace Bot' },
+
+  { command: 'menu', aliases: [], category: 'utility', icon: 'fa-solid fa-list', title: 'Daftar Menu', description: 'Menampilkan daftar menu dan fitur bot.', detail: 'Gunakan perintah ini sebagai titik awal untuk melihat perintah yang tersedia langsung dari WhatsApp.', usage: 'Ketik: /menu' },
+  { command: 'cekplat', aliases: [], category: 'utility', icon: 'fa-solid fa-car', title: 'Cek Plat NTB', description: 'Memeriksa data plat kendaraan, khusus wilayah NTB.', detail: 'Fitur ini dibatasi untuk data plat kendaraan NTB sebagaimana tercantum pada menu bot.', usage: 'Gunakan /cekplat lalu masukkan nomor plat yang ingin diperiksa.' },
+  { command: 'film', aliases: [], category: 'utility', icon: 'fa-solid fa-ticket', title: 'Informasi Film', description: 'Mencari informasi film.', detail: 'Masukkan judul film untuk meminta informasi yang tersedia melalui fitur pencarian film.', usage: 'Gunakan /film diikuti judul film.' },
+  { command: 'jadwalbola', aliases: [], category: 'utility', icon: 'fa-solid fa-futbol', title: 'Jadwal Bola', description: 'Melihat jadwal pertandingan bola untuk dua minggu ke depan.', detail: 'Fitur ini menyajikan jadwal sepak bola dalam periode dua minggu ke depan sesuai informasi yang tersedia saat permintaan dijalankan.', usage: 'Ketik: /jadwalbola' },
+  { command: 'kbbi', aliases: [], category: 'utility', icon: 'fa-solid fa-book-open', title: 'KBBI', description: 'Mencari arti kata di KBBI.', detail: 'Masukkan kata bahasa Indonesia yang ingin dicari untuk memperoleh arti kata melalui fitur KBBI.', usage: 'Contoh: /kbbi adaptasi' },
+  { command: 'lyric', aliases: ['lirik', 'lyrics'], category: 'utility', icon: 'fa-solid fa-quote-right', title: 'Lirik Lagu', description: 'Mencari lirik lagu.', detail: 'Gunakan judul lagu atau informasi artis sebagai kata kunci agar pencarian lebih spesifik.', usage: 'Contoh: /lyric judul lagu - nama artis' },
+  { command: 'nulis', aliases: [], category: 'utility', icon: 'fa-solid fa-pen-nib', title: 'Tulisan Tangan', description: 'Membuat tampilan tulisan tangan dari teks.', detail: 'Masukkan teks yang ingin diubah menjadi bentuk tulisan tangan.', usage: 'Gunakan /nulis diikuti teks yang ingin dibuat.' },
+  { command: 'parafrase', aliases: [], category: 'utility', icon: 'fa-solid fa-arrows-rotate', title: 'Parafrase', description: 'Memparafrasekan teks.', detail: 'Kirim teks yang ingin ditulis ulang dengan susunan kata berbeda sambil mempertahankan inti makna.', usage: 'Gunakan /parafrase diikuti teks.' },
+  { command: 'tsyt', aliases: ['transkrip'], category: 'utility', icon: 'fa-solid fa-closed-captioning', title: 'Transkrip YouTube', description: 'Mengambil transkrip dari video YouTube.', detail: 'Masukkan tautan video YouTube untuk meminta transkrip jika tersedia untuk video tersebut.', usage: 'Gunakan /tsyt diikuti tautan video YouTube.' },
+  { command: 'ocr', aliases: [], category: 'utility', icon: 'fa-solid fa-file-lines', title: 'OCR Gambar', description: 'Mengambil teks dari sebuah gambar.', detail: 'Kirim atau reply gambar yang berisi tulisan. Fitur OCR digunakan untuk mengekstrak teks yang terlihat pada gambar.', usage: 'Reply gambar lalu gunakan: /ocr' },
+  { command: 'sharelok', aliases: ['shareloc'], category: 'utility', icon: 'fa-solid fa-location-dot', title: 'Google Maps ke Share Location', description: 'Mengubah link Google Maps menjadi share location.', detail: 'Kirim tautan Google Maps yang ingin diubah menjadi format lokasi yang dapat dibagikan dalam percakapan.', usage: 'Kirim URL Google Maps atau gunakan /sharelok diikuti tautan.' },
+  { command: 'saran', aliases: [], category: 'utility', icon: 'fa-solid fa-comment-dots', title: 'Saran dan Kritik', description: 'Mengirim saran atau kritik untuk bot.', detail: 'Gunakan fitur ini untuk memberi masukan mengenai fitur, masalah penggunaan, atau ide pengembangan Solace Bot.', usage: 'Gunakan /saran diikuti pesan Anda.' },
+  { command: 'roblox', aliases: ['rblx', 'stalkroblox'], category: 'utility', icon: 'fa-solid fa-cube', title: 'Profil Roblox', description: 'Melihat profil dan inventory akun Roblox.', detail: 'Fitur ini memerlukan username Roblox sebagai input untuk mencari profil dan inventori yang dapat ditampilkan.', usage: 'Contoh: /roblox username_roblox' },
+  { command: 'sfx', aliases: [], category: 'utility', icon: 'fa-solid fa-sound-wave', title: 'Sound Effect', description: 'Mencari sound effect dari Myinstants.', detail: 'Masukkan kata kunci efek suara yang ingin dicari pada Myinstants.', usage: 'Contoh: /sfx applause' },
+  { command: 'loker', aliases: ['inpoloker', 'lowongan', 'job'], category: 'utility', icon: 'fa-solid fa-briefcase', title: 'Cari Lowongan Kerja', description: 'Mencari lowongan kerja berdasarkan kata kunci.', detail: 'Masukkan posisi, bidang, atau kata kunci lain agar pencarian lowongan lebih relevan.', usage: 'Contoh: /loker frontend developer' }
+];
+
+const categoryMeta = {
+  all: { label: 'Semua', icon: 'fa-border-all', active: 'bg-cyan-300 text-slate-950 border-cyan-300', soft: 'border-white/10 bg-white/5 text-slate-300 hover:border-cyan-300/30 hover:text-cyan-100' },
+  ai: { label: 'AI', icon: 'fa-robot', active: 'bg-cyan-300 text-slate-950 border-cyan-300', soft: 'border-cyan-300/20 bg-cyan-300/10 text-cyan-100 hover:border-cyan-300/45' },
+  downloader: { label: 'Downloader', icon: 'fa-download', active: 'bg-blue-300 text-slate-950 border-blue-300', soft: 'border-blue-300/20 bg-blue-300/10 text-blue-100 hover:border-blue-300/45' },
+  converter: { label: 'Konverter', icon: 'fa-arrow-right-arrow-left', active: 'bg-violet-300 text-slate-950 border-violet-300', soft: 'border-violet-300/20 bg-violet-300/10 text-violet-100 hover:border-violet-300/45' },
+  utility: { label: 'Utilitas', icon: 'fa-screwdriver-wrench', active: 'bg-amber-300 text-slate-950 border-amber-300', soft: 'border-amber-300/20 bg-amber-300/10 text-amber-100 hover:border-amber-300/45' }
+};
+
+const autoPlatforms = [
+  { name: 'TikTok', domains: 'tiktok.com, vt.tiktok.com', action: 'TikTok downloader / profil', icon: 'fa-brands fa-tiktok', tone: 'text-sky-200 bg-sky-300/10 border-sky-300/15' },
+  { name: 'Instagram', domains: 'instagram.com, instagr.am', action: 'Instagram downloader', icon: 'fa-brands fa-instagram', tone: 'text-pink-200 bg-pink-300/10 border-pink-300/15' },
+  { name: 'Facebook', domains: 'facebook.com, fb.com, fb.watch', action: 'Facebook downloader', icon: 'fa-brands fa-facebook-f', tone: 'text-blue-200 bg-blue-300/10 border-blue-300/15' },
+  { name: 'X / Twitter', domains: 'x.com, twitter.com', action: 'X/Twitter downloader', icon: 'fa-brands fa-x-twitter', tone: 'text-slate-200 bg-white/5 border-white/10' },
+  { name: 'YouTube', domains: 'youtube.com, youtu.be', action: 'Audio atau video YouTube', icon: 'fa-brands fa-youtube', tone: 'text-red-200 bg-red-300/10 border-red-300/15' },
+  { name: 'Google Maps', domains: 'maps.google.com, maps.app.goo.gl', action: 'Share location', icon: 'fa-solid fa-location-dot', tone: 'text-emerald-200 bg-emerald-300/10 border-emerald-300/15' },
+  { name: 'Threads', domains: 'threads.com', action: 'Threads downloader', icon: 'fa-brands fa-threads', tone: 'text-violet-200 bg-violet-300/10 border-violet-300/15' },
+  { name: 'SnackVideo', domains: 'snackvideo.com, sck.io', action: 'SnackVideo downloader', icon: 'fa-solid fa-clapperboard', tone: 'text-orange-200 bg-orange-300/10 border-orange-300/15' },
+  { name: 'Terabox', domains: 'terabox.com dan domain Terabox terkait', action: 'Terabox downloader', icon: 'fa-solid fa-box-archive', tone: 'text-cyan-200 bg-cyan-300/10 border-cyan-300/15' }
+];
+
+let activeFilter = 'all';
+let activeFeature = null;
+
+const featureGrid = document.getElementById('featureGrid');
+const searchInput = document.getElementById('featureSearch');
+const filterButtons = document.getElementById('filterButtons');
+const resultText = document.getElementById('resultText');
+const resetFilter = document.getElementById('resetFilter');
+const emptyState = document.getElementById('emptyState');
+const modal = document.getElementById('featureModal');
+const modalPanel = document.getElementById('modalPanel');
+
+function getIconClass(feature) {
+  return feature.icon.includes(' ') ? feature.icon : `fa-solid ${feature.icon}`;
+}
+
+function renderFilters() {
+  const categories = ['all', 'ai', 'downloader', 'converter', 'utility'];
+  filterButtons.innerHTML = categories.map((key) => {
+    const meta = categoryMeta[key];
+    const isActive = key === activeFilter;
+    return `<button type="button" data-filter="${key}" class="inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-xs font-bold transition duration-200 ${isActive ? meta.active : meta.soft}">
+      <i class="fa-solid ${meta.icon}"></i>${meta.label}<span class="opacity-70">${key === 'all' ? featureData.length : featureData.filter((item) => item.category === key).length}</span>
+    </button>`;
+  }).join('');
+}
+
+function cardTemplate(feature) {
+  const meta = categoryMeta[feature.category];
+  const aliases = feature.aliases.length ? `<div class="mt-4 flex flex-wrap gap-1.5">${feature.aliases.slice(0, 3).map((alias) => `<code class="rounded-md border border-white/10 bg-white/5 px-1.5 py-1 text-[11px] font-semibold text-slate-300">/${alias}</code>`).join('')}</div>` : '<div class="mt-4 h-[27px]"></div>';
+  return `<article class="feature-card group flex h-full flex-col rounded-2xl border border-white/10 bg-slate-900/60 p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/25 hover:bg-slate-900 hover:shadow-xl hover:shadow-cyan-950/10">
+    <div class="flex items-start justify-between gap-4">
+      <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl ${meta.soft}"><i class="${getIconClass(feature)}"></i></span>
+      <span class="rounded-lg border ${meta.soft} px-2 py-1 text-[10px] font-bold uppercase tracking-[0.12em]">${meta.label}</span>
+    </div>
+    <div class="mt-5">
+      <div class="flex flex-wrap items-center gap-2"><h3 class="text-base font-bold text-white">${feature.title}</h3><code class="rounded-md bg-white/5 px-1.5 py-0.5 text-xs font-semibold text-cyan-200">/${feature.command}</code></div>
+      <p class="mt-3 text-sm leading-6 text-slate-400">${feature.description}</p>
+      ${aliases}
+    </div>
+    <button type="button" data-command="${feature.command}" class="open-feature mt-5 inline-flex items-center gap-2 text-left text-sm font-bold text-cyan-200 transition hover:text-cyan-100">Lihat penjelasan <i class="fa-solid fa-arrow-right text-xs transition group-hover:translate-x-1"></i></button>
+  </article>`;
+}
+
+function renderFeatures() {
+  const query = searchInput.value.trim().toLowerCase();
+  const list = featureData.filter((feature) => {
+    const categoriesMatch = activeFilter === 'all' || feature.category === activeFilter;
+    const searchable = [feature.command, feature.title, feature.description, feature.detail, ...feature.aliases].join(' ').toLowerCase();
+    return categoriesMatch && searchable.includes(query);
+  });
+
+  featureGrid.innerHTML = list.map(cardTemplate).join('');
+  featureGrid.classList.toggle('hidden', list.length === 0);
+  emptyState.classList.toggle('hidden', list.length !== 0);
+  resultText.textContent = `Menampilkan ${list.length} dari ${featureData.length} fitur.`;
+  resetFilter.classList.toggle('hidden', activeFilter === 'all' && query.length === 0);
+  animateFeatureCards();
+}
+
+function openFeature(command) {
+  const feature = featureData.find((item) => item.command === command);
+  if (!feature) return;
+  activeFeature = feature;
+  const meta = categoryMeta[feature.category];
+
+  document.getElementById('modalTitle').textContent = `/${feature.command} — ${feature.title}`;
+  document.getElementById('modalCategory').textContent = meta.label;
+  document.getElementById('modalCategory').className = `text-xs font-bold uppercase tracking-[0.16em] ${meta.soft.split(' ')[0]}`;
+  document.getElementById('modalDescription').textContent = feature.detail;
+  document.getElementById('modalIcon').className = `grid h-11 w-11 shrink-0 place-items-center rounded-xl ${meta.soft}`;
+  document.getElementById('modalIcon').innerHTML = `<i class="${getIconClass(feature)}"></i>`;
+
+  const usageBox = document.getElementById('modalUsageBox');
+  usageBox.classList.toggle('hidden', !feature.usage);
+  document.getElementById('modalUsage').textContent = feature.usage || '';
+
+  const aliasesWrap = document.getElementById('modalAliasWrap');
+  aliasesWrap.classList.toggle('hidden', feature.aliases.length === 0);
+  document.getElementById('modalAliases').innerHTML = feature.aliases.map((alias) => `<code class="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-xs font-semibold text-cyan-100">/${alias}</code>`).join('');
+
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.classList.add('overflow-hidden');
+  requestAnimationFrame(() => {
+    modalPanel.classList.remove('translate-y-5', 'opacity-0');
+    modalPanel.classList.add('translate-y-0', 'opacity-100');
+  });
+  document.getElementById('closeModal').focus();
+}
+
+function closeFeature() {
+  modalPanel.classList.remove('translate-y-0', 'opacity-100');
+  modalPanel.classList.add('translate-y-5', 'opacity-0');
+  setTimeout(() => {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.classList.remove('overflow-hidden');
+    activeFeature = null;
+  }, 250);
+}
+
+function renderAutoPlatforms() {
+  const grid = document.getElementById('autoPlatformGrid');
+  grid.innerHTML = autoPlatforms.map((platform) => `<article class="group flex gap-4 rounded-2xl border border-white/10 bg-slate-950/40 p-4 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/25 hover:bg-slate-950/70">
+    <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl border ${platform.tone}"><i class="${platform.icon}"></i></span>
+    <div><h3 class="font-bold text-white">${platform.name}</h3><p class="mt-1 text-sm text-slate-400">${platform.action}</p><p class="mt-2 text-xs leading-5 text-slate-500">${platform.domains}</p></div>
+  </article>`).join('');
+}
+
+function prefersReducedMotion() {
+  return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function setupReveal() {
+  const elements = [...document.querySelectorAll('.reveal')];
+  if (prefersReducedMotion()) {
+    elements.forEach((element) => element.classList.remove('translate-y-5', 'opacity-0'));
+    return;
+  }
+
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    elements.forEach((element) => {
+      element.classList.remove('translate-y-5', 'opacity-0');
+      gsap.set(element, { autoAlpha: 0, y: 26 });
+      ScrollTrigger.create({
+        trigger: element,
+        start: 'top 88%',
+        once: true,
+        onEnter: () => gsap.to(element, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.72,
+          ease: 'power3.out'
+        })
+      });
+    });
+    return;
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach((element) => element.classList.remove('translate-y-5', 'opacity-0'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('translate-y-5', 'opacity-0');
+        entry.target.classList.add('translate-y-0', 'opacity-100');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  elements.forEach((element) => observer.observe(element));
+}
+
+function animateCounter(element, finalValue) {
+  if (!element) return;
+  if (window.gsap && !prefersReducedMotion()) {
+    const state = { value: 0 };
+    gsap.to(state, {
+      value: finalValue,
+      duration: 0.9,
+      ease: 'power3.out',
+      onUpdate: () => { element.textContent = Math.round(state.value); }
+    });
+    return;
+  }
+  element.textContent = finalValue;
+}
+
+function animateFeatureCards() {
+  if (!window.gsap || prefersReducedMotion()) return;
+  const cards = [...document.querySelectorAll('.feature-card')];
+  if (!cards.length) return;
+  gsap.fromTo(cards, { autoAlpha: 0, y: 14 }, {
+    autoAlpha: 1,
+    y: 0,
+    duration: 0.35,
+    stagger: 0.025,
+    ease: 'power2.out',
+    overwrite: 'auto'
+  });
+}
+
+function setupAmbientMotion() {
+  if (!window.gsap || prefersReducedMotion()) return;
+  document.querySelectorAll('[data-ambient]').forEach((element, index) => {
+    gsap.to(element, {
+      x: index === 1 ? -38 : 34,
+      y: index === 2 ? -28 : 24,
+      duration: 7 + index * 1.7,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1
+    });
+  });
+
+  const preview = document.querySelector('[data-hero-preview]');
+  if (!preview || !(window.matchMedia && window.matchMedia('(pointer: fine) and (hover: hover) and (min-width: 1280px)').matches)) return;
+  preview.addEventListener('pointermove', (event) => {
+    const rect = preview.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    gsap.to(preview, {
+      rotateY: x * 2.2,
+      rotateX: y * -2.2,
+      transformPerspective: 900,
+      duration: 0.45,
+      ease: 'power2.out'
+    });
+  });
+  preview.addEventListener('pointerleave', () => {
+    gsap.to(preview, { rotateY: 0, rotateX: 0, duration: 0.55, ease: 'power3.out' });
+  });
+}
+
+function setupNavigation() {
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  const closeMenu = () => {
+    menu.classList.add('hidden');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.innerHTML = '<i class="fa-solid fa-bars text-lg"></i>';
+  };
+
+  toggle.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('hidden');
+    if (isOpen) {
+      closeMenu();
+      return;
+    }
+    menu.classList.remove('hidden');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.innerHTML = '<i class="fa-solid fa-xmark text-lg"></i>';
+  });
+
+  menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+
+  const desktopQuery = window.matchMedia('(min-width: 1280px)');
+  const handleDesktopChange = (event) => {
+    if (event.matches) closeMenu();
+  };
+  if (desktopQuery.addEventListener) desktopQuery.addEventListener('change', handleDesktopChange);
+  else desktopQuery.addListener(handleDesktopChange);
+}
+
+function setupEvents() {
+  filterButtons.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-filter]');
+    if (!button) return;
+    activeFilter = button.dataset.filter;
+    renderFilters();
+    renderFeatures();
+  });
+
+  searchInput.addEventListener('input', renderFeatures);
+  resetFilter.addEventListener('click', () => {
+    activeFilter = 'all';
+    searchInput.value = '';
+    renderFilters();
+    renderFeatures();
+    searchInput.focus();
+  });
+
+  featureGrid.addEventListener('click', (event) => {
+    const button = event.target.closest('.open-feature');
+    if (button) openFeature(button.dataset.command);
+  });
+
+  document.getElementById('closeModal').addEventListener('click', closeFeature);
+  document.getElementById('closeModalSecondary').addEventListener('click', closeFeature);
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeFeature();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !modal.classList.contains('hidden')) closeFeature();
+  });
+}
+
+function initialize() {
+  document.getElementById('commandCount').textContent = featureData.length;
+  document.getElementById('categoryCount').textContent = Object.keys(categoryMeta).length - 1;
+  renderFilters();
+  renderFeatures();
+  renderAutoPlatforms();
+  setupReveal();
+  setupAmbientMotion();
+  setupNavigation();
+  setupEvents();
+  animateCounter(document.getElementById('commandCount'), featureData.length);
+  animateCounter(document.getElementById('categoryCount'), Object.keys(categoryMeta).length - 1);
+}
+
+initialize();
+
+</script>
 </body>
 </html>
